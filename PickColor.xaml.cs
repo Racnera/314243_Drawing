@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*Modified by Ethan Hunter
+ * 3/24/19
+ * assigns colour used for shape in mainWindow
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,7 +66,7 @@ namespace _314243Drawing
             }
         }
 
-        private void btnPickColor_Click(object sender, RoutedEventArgs e)//sets 'b' in mainwindow to color picked
+        private void btnPickColor_Click(object sender, RoutedEventArgs e)//sets 'b' in "mainWindow" to color picked
         {
             MainWindow.b = ((Button)sender).Background;
             DialogResult = true;
