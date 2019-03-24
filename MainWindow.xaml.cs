@@ -26,6 +26,10 @@ namespace _314243Drawing
         public MainWindow()
         {
             InitializeComponent();
+            string input = txtInput.Text;
+            string[] inSplit = input.Split(',');
+            string shape;
+            
         }
 
         private void setColour_Click(object sender, RoutedEventArgs e)
@@ -33,10 +37,21 @@ namespace _314243Drawing
             pickColor p = new pickColor();
             p.ShowDialog();
         }
-
         private void btnDraw_Click(object sender, RoutedEventArgs e)
         {
-            DrawingHelper DH = new DrawingHelper(canvas, 10, 10, 100, 100, b,"Rectangle");
+            string input = txtInput.Text;
+            string[] inSplit = input.Split(',');
+            string shape="";
+            //check whether ellipse or rectangle is chosen
+            if (rbEli.IsChecked == true)
+            {
+                shape = "Ellipse";
+            }
+            else if (rbRec.IsChecked == true)
+            {
+                shape = "Rectangle";
+            }
+            DrawingHelper DH = new DrawingHelper(canvas, double.Parse(inSplit[0]), double.Parse(inSplit[1]), double.Parse(inSplit[2]), double.Parse(inSplit[3]), b, shape);
         }
     }
     class DrawingHelper //class to assign values for whats being drawn
@@ -58,6 +73,19 @@ namespace _314243Drawing
 
                 Canvas.SetTop(r, y);
                 Canvas.SetLeft(r, x);
+            }
+            else if (Shape == "Ellipse")//
+            {
+                e = new Ellipse();
+                e.Height = H;
+                e.Width = W;
+
+                e.Fill = Colour;
+
+                c.Children.Add(e);
+
+                Canvas.SetTop(e, y);
+                Canvas.SetLeft(e, x);
             }
         }
     }
